@@ -5,10 +5,20 @@ package blogAssistant.logic.model.metaweblog;
  */
 public class WpCategory {
     private String name;
+    /**
+     * 可选
+     */
     private String slug;
-    private Integer parent_id;
+    private int parent_id;
+    /**
+     * 可选
+     */
     private String description;
 
+    public WpCategory(String name,  String description) {
+        this.name = name;
+        this.description = description;
+    }
 
     public String getName() {
         return name;

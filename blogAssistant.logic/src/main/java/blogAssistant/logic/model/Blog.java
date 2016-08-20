@@ -1,5 +1,6 @@
 package blogAssistant.logic.model;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -78,5 +79,20 @@ public class Blog {
 
     public void setMetaDescription(String metaDescription) {
         this.metaDescription = metaDescription;
+    }
+
+    public Map<String,Object> toPost()
+    {
+        Map<String, Object> map = new HashMap<>();
+        map.put("title", title);
+        map.put("categories", getCategories());
+        map.put("description", getContent());
+        map.put("mt_allow_comments","closed");// "open" or "closed"
+        map.put("mt_allow_pings ","closed");// "open" or "closed"
+        map.put("mt_convert_breaks",true);
+        map.put("mt_keywords", "");
+        map.put("mt_excerpt", "");
+        map.put("dateCreated ", new Date());
+        return map;
     }
 }

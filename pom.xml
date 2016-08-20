@@ -14,7 +14,7 @@
 
 
     <groupId>com.yayBlogAssistant</groupId>
-    <artifactId>yayBlogAssistant-parent</artifactId>
+    <artifactId>blogAssistant-parent</artifactId>
     <version>${blogAssistant.version}</version>
     <packaging>pom</packaging>
     <modules>

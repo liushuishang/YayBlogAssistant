@@ -1,7 +1,5 @@
 package blogAssistant.logic.common.utils;
 
-import sun.misc.BASE64Encoder;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,7 +17,7 @@ public class Base64Util {
      * @Author:
      * @CreateTime:
      */
-    public static String convertFileToBase64(String fileUrl) {
+    public static byte[] convertFileToBase64(String fileUrl) {
         InputStream inputStream = null;
         byte[] data = null;
         try {
@@ -39,8 +37,9 @@ public class Base64Util {
             }
         }
         // 加密
-        BASE64Encoder encoder = new BASE64Encoder();
-        return encoder.encode(data);
+//        BASE64Encoder encoder = new BASE64Encoder();
+//        return encoder.encode(data).getBytes();
+        return data;
     }
 
     public static InputStream downLoadFromUrl(String urlStr) throws IOException {
@@ -56,9 +55,9 @@ public class Base64Util {
     }
 
 
-    public static void main(String[] args) {
-        String c = convertFileToBase64("http://b.hiphotos.baidu.com/baike/c0%3Dbaike150%2C5%2C5%2C150%2C50/sign=c05506e79482d158af8f51e3e16372bd/c2fdfc039245d688c56332adacc27d1ed21b2451.jpg");
-        System.out.println(c);
-    }
+//    public static void main(String[] args) {
+//        String c = convertFileToBase64("http://b.hiphotos.baidu.com/baike/c0%3Dbaike150%2C5%2C5%2C150%2C50/sign=c05506e79482d158af8f51e3e16372bd/c2fdfc039245d688c56332adacc27d1ed21b2451.jpg");
+//        System.out.println(c);
+//    }
 
 }

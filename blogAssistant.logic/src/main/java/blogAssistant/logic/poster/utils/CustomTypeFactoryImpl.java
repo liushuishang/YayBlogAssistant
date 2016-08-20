@@ -1,6 +1,5 @@
 package blogAssistant.logic.poster.utils;
 
-import blogAssistant.logic.common.utils.MapUtils;
 import org.apache.xmlrpc.common.TypeFactoryImpl;
 import org.apache.xmlrpc.common.XmlRpcController;
 import org.apache.xmlrpc.common.XmlRpcStreamConfig;
@@ -8,8 +7,6 @@ import org.apache.xmlrpc.serializer.TypeSerializer;
 import org.apache.xmlrpc.serializer.TypeSerializerImpl;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.SAXException;
-
-import java.util.Map;
 
 /**
  * Created by ucs_yuananyun on 2016/8/19.
@@ -31,7 +28,6 @@ public class CustomTypeFactoryImpl extends TypeFactoryImpl {
 
     };
 
-
     @Override
     public TypeSerializer getSerializer(XmlRpcStreamConfig pConfig,
                                         Object pObject) throws SAXException {
@@ -40,8 +36,7 @@ public class CustomTypeFactoryImpl extends TypeFactoryImpl {
         } else {
             TypeSerializer serializer = super.getSerializer(pConfig, pObject);
             if (serializer == null) {
-                Map mObject = MapUtils.transBean2Map(pObject);
-                serializer = super.getSerializer(pConfig, mObject);
+                serializer = new BeanSerializer(this, pConfig);
             }
             return serializer;
         }

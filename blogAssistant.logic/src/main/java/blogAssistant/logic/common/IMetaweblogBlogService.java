@@ -4,6 +4,7 @@ import blogAssistant.logic.model.metaweblog.*;
 
 import java.util.List;
 
+
 /**
  * Created by ucs_yuananyun on 2016/8/19.
  */
@@ -27,7 +28,7 @@ public interface IMetaweblogBlogService {
      * @param password
      * @return
      */
-    List<BlogInfo> getUsersBlogs(String appKey, String userName, String password);
+    List<BlogAccount> getUsersBlogs(String appKey, String userName, String password);
 
     /**
      * 更新一个存在的博客
@@ -67,7 +68,7 @@ public interface IMetaweblogBlogService {
      * @param number
      * @return
      */
-    List<Post> getRecentPosts(String blogId,String userName,String password,int number);
+    List<Post> getRecentPosts(String blogId, String userName, String password, int number);
 
 
     /**

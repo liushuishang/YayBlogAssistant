@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>yayBlogAssistant-parent</artifactId>
+        <artifactId>blogAssistant-parent</artifactId>
         <groupId>com.yayBlogAssistant</groupId>
         <version>${blogAssistant.version}</version>
     </parent>
@@ -23,6 +23,11 @@
             <groupId>commons-pool</groupId>
             <artifactId>commons-pool</artifactId>
             <version>1.5.5</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.9.2</version>
         </dependency>
         <dependency>
             <groupId>us.codecraft</groupId>

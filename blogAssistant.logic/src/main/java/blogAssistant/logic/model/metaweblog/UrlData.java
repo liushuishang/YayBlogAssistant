@@ -4,13 +4,13 @@ package blogAssistant.logic.model.metaweblog;
  * Created by ucs_yuananyun on 2016/8/19.
  */
 public class UrlData {
-    private String ur;
+    private String url;
 
-    public String getUr() {
-        return ur;
+    public String getUrl() {
+        return url;
     }
 
-    public void setUr(String ur) {
-        this.ur = ur;
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

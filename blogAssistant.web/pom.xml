@@ -10,7 +10,7 @@
 	<packaging>war</packaging>
 
 	<parent>
-		<artifactId>yayBlogAssistant-parent</artifactId>
+		<artifactId>blogAssistant-parent</artifactId>
 		<groupId>com.yayBlogAssistant</groupId>
 		<version>${blogAssistant.version}</version>
 	</parent>
@@ -40,6 +40,11 @@
 			<groupId>com.yayBlogAssistant</groupId>
 			<artifactId>blogAssistant.logic</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
 		</dependency>
 
 	</dependencies>

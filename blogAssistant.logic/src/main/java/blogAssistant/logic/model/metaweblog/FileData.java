@@ -4,15 +4,15 @@ package blogAssistant.logic.model.metaweblog;
  * Created by ucs_yuananyun on 2016/8/19.
  */
 public class FileData {
-    private String  bits;
+    private byte[]  bits;
     private String name;
     private String type;
 
-    public String getBits() {
+    public byte[] getBits() {
         return bits;
     }
 
-    public void setBits(String bits) {
+    public void setBits(byte[] bits) {
         this.bits = bits;
     }
 
