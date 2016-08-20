@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by ucs_yuananyun on 2016/8/19.
  */
-public interface  IBlogService {
+public interface IMetaweblogBlogService {
 
     /**
      * 删除一条博客
@@ -15,7 +15,7 @@ public interface  IBlogService {
      * @param postId
      * @param userName
      * @param password
-     * @param publish Where applicable, this specifies whether the blog should be republished after the post has been deleted.
+     * @param publish 表示是发布还是存为草稿
      * @return
      */
     boolean deletePost(String appKey,String postId,String userName,String password,boolean publish);
