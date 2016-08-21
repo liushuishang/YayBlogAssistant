@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <script type="text/javascript" charset="utf-8" src="ueditor/third-party/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="ueditor/ueditor.all.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="ueditor/lang/zh-cn/zh-cn.js"></script>
+
+    <script type="text/javascript" charset="utf-8" src="//cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <link href="//cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <style type="text/css">
+        .contact-form {
+            margin-top: 15px;
+        }
+
+        .contact-form .textarea {
+            min-height: 220px;
+            resize: none;
+        }
+
+        .form-control {
+            box-shadow: none;
+            border-color: #eee;
+            height: 40px;
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #00b09c;
+        }
+
+        .form-control-feedback {
+            line-height: 50px;
+        }
+
+        .main-btn {
+            background: #00b09c;
+            border-color: #00b09c;
+            color: #fff;
+        }
+
+        .main-btn:hover {
+            background: #00a491;
+            color: #fff;
+        }
+
+        .form-control-feedback {
+            line-height: 50px;
+            top: 0px;
+        }
+        .toolbar{
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <form role="form" id="post-form" class="contact-form" th:action="@{/newPost}">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="userName" autocomplete="off" id="userName"
+                               value="lhdwr"
+                               placeholder="博客帐号名称"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="password" autocomplete="off" id="password"
+                               value="lhdwr@123"
+                               placeholder="博客帐号密码"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="targetUrl" autocomplete="on" id="targetUrl"
+                               value="http://blog.csdn.net/yfkiss/article/details/38944179"
+                               placeholder="要抓取的文章链接"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="float: left">
+                    <div>
+                        <button type="button"  id="btn_startCrawler" class="btn main-btn pull-left toolbar ">抓取文章</button>
+                    </div>
+                    <div>
+                        <button type="submit"  id="btn_post" class="btn main-btn pull-left toolbar">转发文章</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="title" autocomplete="on" id="title"
+                               placeholder="文章标题"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <script id="editor" type="text/plain" style="width:100%;min-height:500px;"></script>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    $(function () {
+        var ue = UE.getEditor('editor', {"initialFrameWidth": "100%"});
+        $("#btn_startCrawler").click(function () {
+            var targetUrl = $("#targetUrl").val();
+            var url =/*[[@{/fetchPage}]]*/;
+            url += "?targetUrl=" + targetUrl + "&random=" + Math.random();
+            if (!targetUrl) alert("目标链接不能为空！");
+            $.ajax({
+                type: "get",
+                cache: false,
+                url: url,
+                data: null,
+                dataType: 'text',
+                success: function (result) {
+                    debugger
+                    var blog = JSON.parse(result).r;
+                    $("#title").val(blog.title);
+                    ue.setContent(blog.content, false);
+                },
+                error: function (msg) {
+                    alert("操作出现异常！");
+                    console.log(msg);
+                }
+            });
+        });
+
+        $("#post-form").submit(function () {
+            debugger
+            var form = $(this);
+            var data = {};
+            form.serializeArray().map(function (x) {
+                data[x.name] = x.value;
+            });
+            $.ajax({
+                type: "post",
+                cache: false,
+                contentType: "application/json",
+                url: form.attr("action"),
+                data: JSON.stringify(data),
+                dataType: 'json',
+                success: function (data) {
+//                    form.resetForm();
+                    alert(data.s==1 ? "发表成功!" : "发表失败！");
+                },
+                error: function (msg) {
+                    alert("提交出现异常！");
+                    console.log(msg);
+                }
+            });
+            return false;
+        });
+    });
+    /*]]>*/
+</script>
+</body>
+</html>

@@ -11,4 +11,15 @@ public class Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
+
+//	@Bean(name = "multipartResolver")
+//	public CommonsMultipartResolver getMultipartResolver()
+//	{
+//		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+//		multipartResolver.setDefaultEncoding("utf-8");
+//		multipartResolver.setMaxInMemorySize(10960);
+//		multipartResolver.setMaxUploadSize(1048576000);
+//		multipartResolver.setResolveLazily(true);
+//		return multipartResolver;
+//	}
 }
