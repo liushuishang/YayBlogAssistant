@@ -4,7 +4,6 @@ import blogAssistant.logic.common.IBlogPageCrawler;
 import blogAssistant.logic.common.utils.RequestHelper;
 import blogAssistant.logic.model.Blog;
 import blogAssistant.logic.model.HttpMethod;
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Request;
@@ -39,8 +38,8 @@ public class BlogPageCrawler implements IBlogPageCrawler {
         if(page==null) return null;
         Html html = page.getHtml();
         String title = html.regex("<title>(.*?)</title>").get().trim();
-        String content = html.smartContent().get();
-        content = StringEscapeUtils.escapeHtml4(content);
+        String content = html.css("#main").get();
+//        content = StringEscapeUtils.escapeHtml4(content);
         return new Blog(title, content);
 
     }

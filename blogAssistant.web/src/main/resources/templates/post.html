@@ -51,7 +51,8 @@
             line-height: 50px;
             top: 0px;
         }
-        .toolbar{
+
+        .toolbar {
             margin: 10px;
         }
     </style>
@@ -89,10 +90,11 @@
             <div class="row">
                 <div class="col-md-12" style="float: left">
                     <div>
-                        <button type="button"  id="btn_startCrawler" class="btn main-btn pull-left toolbar ">抓取文章</button>
+                        <button type="button" id="btn_startCrawler" class="btn main-btn pull-left toolbar ">抓取文章
+                        </button>
                     </div>
                     <div>
-                        <button type="submit"  id="btn_post" class="btn main-btn pull-left toolbar">转发文章</button>
+                        <button type="submit" id="btn_post" class="btn main-btn pull-left toolbar">转发文章</button>
                     </div>
                 </div>
             </div>
@@ -115,7 +117,13 @@
 <script th:inline="javascript">
     /*<![CDATA[*/
     $(function () {
-        var ue = UE.getEditor('editor', {"initialFrameWidth": "100%"});
+        var ue = UE.getEditor('editor', {
+            "initialFrameWidth": "100%",
+            "allowDivTransToP": false,
+            "disabledTableInTable":false
+
+
+        });
         $("#btn_startCrawler").click(function () {
             var targetUrl = $("#targetUrl").val();
             var url =/*[[@{/fetchPage}]]*/;
@@ -156,7 +164,7 @@
                 dataType: 'json',
                 success: function (data) {
 //                    form.resetForm();
-                    alert(data.s==1 ? "发表成功!" : "发表失败！");
+                    alert(data.s == 1 ? "发表成功!" : "发表失败！");
                 },
                 error: function (msg) {
                     alert("提交出现异常！");

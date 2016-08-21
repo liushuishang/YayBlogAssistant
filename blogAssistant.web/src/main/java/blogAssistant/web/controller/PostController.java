@@ -5,7 +5,6 @@ import blogAssistant.logic.model.Blog;
 import blogAssistant.logic.service.CNBlogService;
 import blogAssistant.web.model.RestResult;
 import org.apache.commons.collections.MapUtils;
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
@@ -55,7 +54,7 @@ public class PostController {
             String password = MapUtils.getString(params, "password");
             String title = MapUtils.getString(params, "title");
             String content = MapUtils.getString(params, "editorValue");
-            content=StringEscapeUtils.unescapeHtml4(content);
+//            content=StringEscapeUtils.unescapeHtml4(content);
 
             Assert.notNull(userName);
             Assert.notNull(password);
