@@ -63,8 +63,10 @@ public class PostController {
 
             Blog blog = new Blog(title, content);
             CNBlogService blogService = new CNBlogService(userName, password);
-            if (blogService.newPost(blog, true) != null)
-                return RestResult.success(true);
+            String postId = blogService.newPost(blog, true);
+            Map<String, Object> postInfo = blogService.getPost(postId);
+            if (postInfo != null && postInfo.size() > 0)
+                return RestResult.success(postInfo);
             else return RestResult.failure("发表博客失败！");
         } catch (Exception ex) {
             return RestResult.failure(ex.getLocalizedMessage());

@@ -108,7 +108,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <script id="editor" type="text/plain" style="width:100%;min-height:500px;"></script>
+                    <script id="editor" type="text/plain" style="width:100%;min-height:400px;"></script>
                 </div>
             </div>
         </form>
@@ -120,14 +120,14 @@
         var ue = UE.getEditor('editor', {
             "initialFrameWidth": "100%",
             "allowDivTransToP": false,
-            "disabledTableInTable":false
+            "disabledTableInTable": false
 
 
         });
         $("#btn_startCrawler").click(function () {
             var targetUrl = $("#targetUrl").val();
             var url =/*[[@{/fetchPage}]]*/;
-            url += "?targetUrl=" + targetUrl + "&random=" + Math.random();
+            url += "?targetUrl=" + encodeURIComponent(targetUrl) + "&random=" + Math.random();
             if (!targetUrl) alert("目标链接不能为空！");
             $.ajax({
                 type: "get",
@@ -149,7 +149,6 @@
         });
 
         $("#post-form").submit(function () {
-            debugger
             var form = $(this);
             var data = {};
             form.serializeArray().map(function (x) {
@@ -164,7 +163,13 @@
                 dataType: 'json',
                 success: function (data) {
 //                    form.resetForm();
-                    alert(data.s == 1 ? "发表成功!" : "发表失败！");
+                    debugger
+                    if (data.s == 1) {
+                        var tab = window.open('about:blank');
+                        alert("发表成功！");
+                        tab.location = data.r.link;
+                    } else
+                        alert("发表失败！");
                 },
                 error: function (msg) {
                     alert("提交出现异常！");

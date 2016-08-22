@@ -38,7 +38,7 @@ public class BlogPageCrawler implements IBlogPageCrawler {
         if(page==null) return null;
         Html html = page.getHtml();
         String title = html.regex("<title>(.*?)</title>").get().trim();
-        String content = html.css("#main").get();
+        String content = page.getRawText();
 //        content = StringEscapeUtils.escapeHtml4(content);
         return new Blog(title, content);
 
